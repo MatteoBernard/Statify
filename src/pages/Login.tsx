@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {Playlist} from "../types";
 import {AUTH_URL} from "../constants/authentification";
 import {setToken} from "../redux/reducers/auth";
+import {clsx} from "clsx";
 
 export const Login = () => {
 
@@ -48,11 +49,34 @@ export const Login = () => {
     }, [playlists]);
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={clsx(
+            "flex",
+            "flex-col",
+            "items-center",
+            "justify-center",
+            "h-screen"
+        )}>
+            <h1 className={clsx(
+                "text-spotifyGreen",
+                "text-6xl",
+                "font-bold",
+                "mb-8",
+            )}>Statify</h1>
+
             {token == null && (
-                <button onClick={handleLogin}>Login with Spotify</button>
+                <button onClick={handleLogin} className={clsx(
+                    "bg-spotifyGreen",
+                    "text-white",
+                    "py-3",
+                    "px-5",
+                    "rounded-lg",
+                    "duration-300",
+                    "text-spotifyBlack",
+                    "content-center",
+                    "text-xl"
+                )}>Login with Spotify</button>
             )}
+
             {token != null && user && !user.isLoading && (
                 <div>
                     <ConfirmLoginButton />
