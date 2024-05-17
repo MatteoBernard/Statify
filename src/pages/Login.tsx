@@ -17,13 +17,11 @@ export const Login = () => {
     const {token, user} = useAppSelector(state => state.auth);
     const {playlists} = useAppSelector(state => state.playlists);
 
-    console.log(window.location.href)
-
     const handleLogin = (): void => {
         window.location.href = AUTH_URL;
     }
 
-    if (window.location.href.includes('access_token') && token === null) { // vois pour un hook du style useParams() j'ai la flemme de refaire ça
+    if (window.location.href.includes('access_token') && token === null) {
         const newToken = window.location.hash.split('&')[0].split('=')[1];
         dispatch(setToken(newToken));
         getUser(newToken)

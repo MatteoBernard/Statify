@@ -5,12 +5,14 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import localStorage from "redux-persist/es/storage";
 
-localStorage.removeItem('persist:root');
-
 const persistConfig = {
     key: 'root',
     storage,
 };
+
+if (window.location.pathname === '/') {
+    localStorage.removeItem('persist:root');
+}
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 

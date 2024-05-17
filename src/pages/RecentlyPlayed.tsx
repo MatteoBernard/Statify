@@ -10,8 +10,8 @@ export const RecentlyPlayed = () => {
             <h1>Recently Played</h1>
 
             <div>
-                {recentlyPlayed.items.map((item: RecentlyPlayedContent) => (
-                    <div key={item.track.id}>
+                {recentlyPlayed.items.map((item: RecentlyPlayedContent, index: number) => (
+                    <div key={index}>
                         <h3>{item.track.name}</h3>
                         <img src={item.track.album.images[0].url} alt={item.track.name}/>
                     </div>
