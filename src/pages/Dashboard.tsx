@@ -1,28 +1,42 @@
+import {Template} from "./Template";
+import {PreviewContainer, SpotifyContainer, UserProfileData} from "../components";
 import {useAppSelector} from "../redux";
-import {Link} from "react-router-dom";
+import {ThreeDots} from "react-loader-spinner";
 
 export const Dashboard = () => {
 
-    const {user} = useAppSelector(state => state.auth);
+    const topArtists = useAppSelector(state => state.artists.topArtists.short_term);
+    const topTracks = useAppSelector(state => state.tracks.topTracks.short_term);
+    const recentlyPlayed = useAppSelector(state => state.tracks.recentlyPlayed);
+    const {playlists} = useAppSelector(state => state.playlists);
 
     return (
-        <div>
-            <h1>Dashboard</h1>
+        <Template title={"Dashboard"}>
 
-            <div>
-                <h2>Profile datas</h2>
+            {!topArtists || !topTracks || !recentlyPlayed || !playlists ? (
+                <div className={"flex justify-center items-center h-screen"}>
+                    <ThreeDots
+                        color="#1DB954"
+                        height={80}
+                        width={80}
+                    />
+                </div>
+            ) :  (
+                <div>
+                    <UserProfileData />
 
-                <h3>{user.display_name}</h3>
-                <img src={user.images[0].url} alt={user.display_name}/>
-            </div>
+                    <SpotifyContainer>
+                        <div>
+                            <PreviewContainer title={"Your top Artists"} link={"/topArtists"} items={topArtists.items} />
+                            <PreviewContainer title={"Your top Tracks"} link={"/topTracks"} items={topTracks.items} />
+                            <PreviewContainer title={"Your playlists"} link={"/playlists"} items={playlists.items} />
+                            <PreviewContainer title={"Your recently played tracks"} link={"/recentlyPlayed"} items={recentlyPlayed.items} />
+                        </div>
+                    </SpotifyContainer>
+                </div>
+            )
 
-            <div>
-                <h2>Stats</h2>
-                <Link to={"/topArtists"}>Top artists</Link>
-                <Link to={"/topTracks"}>Top tracks</Link>
-                <Link to={"/playlists"}>My playlists</Link>
-                <Link to={"/recentlyPlayed"}>Recently played</Link>
-            </div>
-        </div>
+            }
+        </Template>
     )
 }

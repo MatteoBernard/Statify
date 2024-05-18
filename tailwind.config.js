@@ -5,10 +5,17 @@ module.exports = {
     extend: {
       colors: {
         'spotifyGreen': '#1DB954',
-        'spotifyBlack': '#191414',
+        'spotifyBlack': '#010100',
+        'spotifyGrey': '#121212',
+        'spotifyLightGrey': '#232322',
       },
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'],
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar"),
+  ],
 }
 

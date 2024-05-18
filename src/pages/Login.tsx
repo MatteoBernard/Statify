@@ -11,6 +11,7 @@ import {Playlist} from "../types";
 import {AUTH_URL} from "../constants/authentification";
 import {setToken} from "../redux/reducers/auth";
 import {clsx} from "clsx";
+import statify from "../assets/statify.png";
 
 export const Login = () => {
 
@@ -54,18 +55,29 @@ export const Login = () => {
             "flex-col",
             "items-center",
             "justify-center",
-            "h-screen"
+            "h-screen",
         )}>
-            <h1 className={clsx(
-                "text-spotifyGreen",
-                "text-6xl",
-                "font-bold",
-                "mb-8",
-            )}>Statify</h1>
+            <div className={clsx(
+                "flex",
+                "items-center",
+                "justify-center"
+            )}>
+                <h1 className={clsx(
+                    "text-spotifyGreen",
+                    "text-6xl",
+                    "font-bold",
+                    "m-8",
+                )}>Statify</h1>
+                <img src={statify} alt={"Statify"} className={clsx(
+                    "w-20",
+                    "h-20",
+                    "rounded-lg",
+                )} />
+            </div>
 
             {token == null && (
                 <button onClick={handleLogin} className={clsx(
-                    "bg-spotifyGreen",
+                    "bg-spotifyGrey",
                     "text-white",
                     "py-3",
                     "px-5",

@@ -12,24 +12,18 @@ const ConfirmLoginButton = () => {
             "flex-col",
             "items-center",
             "justify-center",
-            "bg-spotifyGreen",
-            "border",
-            "border-spotifyGreen",
-            "border-2",
+            "bg-spotifyGrey",
             "rounded-2xl",
             "p-4",
             "m-4",
         )}>
             <img src={user.images[0].url} className={clsx(
-                "rounded-2xl",
+                "rounded-lg",
                 "w-24",
                 "h-24",
-                "border",
-                "border-spotifyBlack",
-                "border-2",
             )}/>
             <p className={clsx(
-                "text-spotifyBlack",
+                "text-white",
                 "font-semibold",
                 "text-lg",
                 "mt-2"

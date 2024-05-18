@@ -7,12 +7,10 @@ function App() {
   return (
       <div className={clsx(
           "bg-spotifyBlack",
-            "text-white",
-            "min-h-screen",
-            "flex",
-            "flex-col",
-            "items-center",
-            "justify-center"
+          "text-white",
+          "min-h-screen",
+          "pb-3",
+          "font-sans"
       )}>
           <Routes>
               <Route path={"/"} element={<Login />}/>
