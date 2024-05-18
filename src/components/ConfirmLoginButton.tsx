@@ -1,4 +1,4 @@
-import {useAppSelector} from "../../redux";
+import {useAppSelector} from "../redux";
 import {Link} from "react-router-dom";
 import {clsx} from "clsx";
 

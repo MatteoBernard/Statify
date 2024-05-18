@@ -5,7 +5,7 @@ import {
     getUserTopArtists,
     useAppSelector, getUserRecentlyPlayed, useAppDispatch, getUser
 } from "../redux";
-import ConfirmLoginButton from "../components/buttons/ConfirmLoginButton";
+import ConfirmLoginButton from "../components/ConfirmLoginButton";
 import {useEffect} from "react";
 import {Playlist} from "../types";
 import {AUTH_URL} from "../constants/authentification";

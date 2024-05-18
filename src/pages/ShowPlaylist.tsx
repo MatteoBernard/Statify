@@ -1,7 +1,9 @@
 import {Playlist, PlaylistContent} from "../types";
 import {useAppSelector} from "../redux";
 import {useParams} from "react-router-dom";
-import {GoToDashboard} from "../components";
+import {SpotifyContainer, TrackDisplayer} from "../components";
+import {Template} from "./Template";
+import {clsx} from "clsx";
 
 export const ShowPlaylist = () => {
 
@@ -17,26 +19,65 @@ export const ShowPlaylist = () => {
     }
 
     return (
-        <>
-            {playlistId !== undefined && currentPlaylist && (
-                <div>
-                    <h1>{currentPlaylist.name}</h1>
-                    <p>{currentPlaylist.description}</p>
-                    {playlistTracks?.items && (
-                        <div>
-                            <h2>Tracks</h2>
-                            <ul>
-                                {playlistTracks.items.map((item, index) => (
-                                    item && item.track && <li key={index}>
-                                        <p>{item.track.name} - {item.track.artists.map(artist => artist.name).join(', ')}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+        <Template title={currentPlaylist.name}>
+
+            <SpotifyContainer>
+                <div className={clsx(
+                    "flex",
+                    "justify-between",
+                    "items-center",
+                    "p-2"
+                )}>
+                    <img src={currentPlaylist.images[0].url} className={clsx(
+                        "rounded-lg",
+                        "object-contain",
+                        "h-28",
+                        "w-28",
+                        "md:h-36",
+                        "md:w-36",
+                        "md:m-3",
+                        "lg:h-44",
+                        "lg:w-44",
+                        "lg:m-4",
+                    )} alt={currentPlaylist.name}/>
+                    <div className={clsx(
+                        "flex",
+                        "flex-col",
+                        "items-center",
+                        "justify-center",
+                        "m-auto"
+                    )}>
+                        <h1 className={clsx(
+                            "font-bold",
+                            "text-2xl",
+                            "md:text-3xl",
+                            "lg:text-4xl",
+                            "m-3",
+                        )}>{currentPlaylist.name}</h1>
+                        <h1 className={clsx(
+                            "font-bold",
+                            "text-sm",
+                            "md:text-xl",
+                            "lg:text-2xl",
+                            "m-auto",
+                        )}>{currentPlaylist.description}</h1>
+                    </div>
                 </div>
-            )}
-            <GoToDashboard />
-        </>
+            </SpotifyContainer>
+
+            <SpotifyContainer>
+                {playlistId !== undefined && currentPlaylist && (
+                    <div>
+                        {playlistTracks && playlistTracks?.items && (
+                            <div>
+                                {playlistTracks.items.map((item, index) => (
+                                    playlistTracks ? <TrackDisplayer track={item.track} index={index} /> : null
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
+            </SpotifyContainer>
+        </Template>
     );
 }

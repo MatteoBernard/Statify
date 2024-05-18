@@ -4,6 +4,7 @@ import statify from "../assets/statify.png";
 import {ReactNode} from "react";
 import localStorage from "redux-persist/es/storage";
 import {Link} from "react-router-dom";
+import {FaGithub} from "react-icons/fa";
 
 type TemplateProps = {
     children: ReactNode
@@ -49,10 +50,43 @@ export const Template = ({children, title}: TemplateProps) => {
                     "bg-spotifyBlack",
                     "hover:bg-spotifyLightGrey",
                 )}>
-                    <MdExitToApp size={30} />
+                    <MdExitToApp size={30}/>
                 </button>
             </div>
             {children}
+            <footer className={clsx(
+                "bottom-0",
+                "w-full",
+                "mt-8",
+            )}>
+                <div className={clsx(
+                    "flex",
+                    "justify-center",
+                    "items-center",
+                    "p-4",
+                    "bg-spotifyGrey",
+                    "text-white",
+                    "gap-3"
+                )}>
+                    <div className={clsx(
+                        "flex",
+                        "flex-col",
+                        "items-center",
+                        "justify-center",
+                        "m-4",
+                        "gap-1"
+                    )}>
+                        <p className={clsx(
+                            "font-bold",
+                            "text-lg",
+
+                        )}>Statify - Bernard Matteo</p><p>Hosted on Netlify</p>
+                    </div>
+                    <a href={"https://github.com/MatteoBernard/Statify"} target={"_blank"}>
+                        <FaGithub size={30}/>
+                    </a>
+                </div>
+            </footer>
         </div>
     )
 }

@@ -9,7 +9,6 @@ function App() {
           "bg-spotifyBlack",
           "text-white",
           "min-h-screen",
-          "pb-3",
           "font-sans"
       )}>
           <Routes>

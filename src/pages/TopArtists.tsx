@@ -1,41 +1,61 @@
 import {useAppSelector} from "../redux";
-import {Artist} from "../types";
+import {Template} from "./Template";
+import {useState} from "react";
+import {SpotifyContainer} from "../components";
+import {ItemDisplayer} from "../components";
+import {clsx} from "clsx";
 
 export const TopArtists = () => {
 
     const {short_term, medium_term, long_term} = useAppSelector(state => state.artists.topArtists);
+    const [term, setTerm] = useState('short_term');
+
+    let items;
+    switch (term) {
+        case 'short_term':
+            items = short_term?.items;
+            break;
+        case 'medium_term':
+            items = medium_term?.items;
+            break;
+        case 'long_term':
+            items = long_term?.items;
+            break;
+        default:
+            items = short_term?.items;
+    }
 
     return (
-        <div>
-            <h1>Top Artists</h1>
+        <Template title={"Top Artists"}>
+            <SpotifyContainer>
+                <div className={clsx(
+                    "flex",
+                    "justify-center",
+                    "space-x-3",
+                    "mb-5"
 
-            <div>
-                <h2>Short term</h2>
-                {short_term && short_term.items.map((artist: Artist) => (
-                    <div key={artist.id}>
-                        <h3>{artist.name}</h3>
-                        <img src={artist.images[0].url} alt={artist.name}/>
-                    </div>
-                ))}
-            </div>
-            <div>
-                <h2>Medium term</h2>
-                {medium_term && medium_term.items.map((artist: Artist) => (
-                    <div key={artist.id}>
-                        <h3>{artist.name}</h3>
-                        <img src={artist.images[0].url} alt={artist.name}/>
-                    </div>
-                ))}
-            </div>
-            <div>
-                <h2>Long term</h2>
-                {long_term && long_term.items.map((artist: Artist) => (
-                    <div key={artist.id}>
-                        <h3>{artist.name}</h3>
-                        <img src={artist.images[0].url} alt={artist.name}/>
-                    </div>
-                ))}
-            </div>
-        </div>
+                )}>
+                    <button onClick={() => setTerm('short_term')} className={clsx(
+                        "px-3",
+                        "py-1",
+                        term === 'short_term' ? "border-b-2"  : "",
+                    )}>Short term</button>
+                    <button onClick={() => setTerm('medium_term')} className={clsx(
+                        "px-3",
+                        "py-1",
+                        term === 'medium_term' ? "border-b-2" : ""
+                    )}>Medium term</button>
+                    <button onClick={() => setTerm('long_term')} className={clsx(
+                        "px-3",
+                        "py-1",
+                        term === 'long_term' ? "border-b-2" : ""
+                    )}>Long term</button>
+                </div>
+
+                <div>
+                    {items && <ItemDisplayer items={items} />}
+                </div>
+            </SpotifyContainer>
+        </Template>
     )
 }

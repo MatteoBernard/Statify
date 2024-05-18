@@ -1,29 +1,27 @@
 import {useAppSelector} from "../redux";
-import {SelectPlaylist} from "../components";
+import {PlaylistDisplayer, SpotifyContainer} from "../components";
 import {Playlist} from "../types";
+import {Template} from "./Template";
 
 export const Playlists = () => {
 
-    const playlists = useAppSelector(state => state.playlists);
+    const {playlists} = useAppSelector(state => state.playlists);
 
     return (
-        <div>
-            <h1>Playlists</h1>
-            {playlists && playlists.isFetching && <p>Loading...</p>}
-            {playlists && playlists.error && <p>Error: {playlists.error}</p>}
-
-            {playlists.playlists.length != 0 && !playlists.isFetching && (
-                <div>
-                    <h2>Your Playlists</h2>
-                    <ul>
-                        {playlists.playlists.items.map((playlist: Playlist) => (
-                            <li key={playlist.id}>
-                                <SelectPlaylist playlistId={playlist.id} playlistName={playlist.name} />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
+        <Template title={"Your playlists"}>
+            <SpotifyContainer>
+                {playlists.length !== 0 && !playlists.isFetching && (
+                    <div>
+                        <ul>
+                            {playlists.items.map((playlist: Playlist) => (
+                                <li key={playlist.id}>
+                                    <PlaylistDisplayer playlist={playlist} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </SpotifyContainer>
+        </Template>
     )
 }
