@@ -27,8 +27,8 @@ export const Dashboard = () => {
 
                     <SpotifyContainer>
                         <div>
-                            <PreviewContainer title={"Your top Artists"} link={"/topArtists"} items={topArtists.items} />
-                            <PreviewContainer title={"Your top Tracks"} link={"/topTracks"} items={topTracks.items} />
+                            <PreviewContainer title={"Your top artists"} link={"/topArtists"} items={topArtists.items} />
+                            <PreviewContainer title={"Your top tracks"} link={"/topTracks"} items={topTracks.items} />
                             <PreviewContainer title={"Your playlists"} link={"/playlists"} items={playlists.items} />
                             <PreviewContainer title={"Your recently played tracks"} link={"/recentlyPlayed"} items={recentlyPlayed.items} />
                         </div>
