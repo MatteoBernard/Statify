@@ -17,11 +17,11 @@ export const UserProfileData = () => {
             )}>
                 <img src={user.images[0].url} alt={user.display_name} className={clsx(
                     "rounded-lg",
-                    "w-24",
-                    "h-24",
+                    "w-28",
+                    "h-28",
                     "mr-10",
-                    "md:w-32",
-                    "md:h-32",
+                    "md:w-36",
+                    "md:h-36",
                     "md:mr-20",
                 )}/>
                 <div className={clsx(
@@ -41,6 +41,9 @@ export const UserProfileData = () => {
                     <p className={clsx(
                         "text-sm"
                     )}>@{user.id}</p>
+                    <p className={clsx(
+                        "text-sm"
+                    )}>Followers : {user.followers.total}</p>
                 </div>
             </div>
         </SpotifyContainer>
