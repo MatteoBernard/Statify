@@ -127,7 +127,8 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
             "grid-cols-1",
             "md:grid-cols-5",
             "gap-4",
-            'm-3'
+            'mx-3',
+            'my-7'
         )}>
             <div className={clsx(
                 "col-span-full",
