@@ -26,7 +26,7 @@ export const ShowPlaylist = () => {
                     "flex",
                     "justify-between",
                     "items-center",
-                    "p-2"
+                    "p-2",
                 )}>
                     <img src={currentPlaylist.images[0].url} className={clsx(
                         "rounded-lg",
@@ -44,8 +44,10 @@ export const ShowPlaylist = () => {
                         "flex",
                         "flex-col",
                         "items-center",
+                        "text-center",
                         "justify-center",
-                        "m-auto"
+                        "m-auto",
+                        "w-1/2",
                     )}>
                         <h1 className={clsx(
                             "font-bold",
@@ -59,7 +61,8 @@ export const ShowPlaylist = () => {
                             "text-sm",
                             "md:text-xl",
                             "lg:text-2xl",
-                            "m-auto",
+                            "w-11/12",
+                            "truncate"
                         )}>{currentPlaylist.description}</h1>
                     </div>
                 </div>

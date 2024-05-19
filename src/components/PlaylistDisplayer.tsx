@@ -36,12 +36,14 @@ export const PlaylistDisplayer = ({playlist}: PlaylistDisplayerProps) => {
                     <div className={clsx(
                         "flex",
                         "flex-col",
-                        "items-center",
+                        "text-center",
+                        "justify-center",
                         "w-3/4",
                         "ml-4",
                         "md:ml-6",
                         "lg:ml-8",
-                        "gap-1"
+                        "gap-1",
+                        "truncate"
                     )}>
                         <h3 className={clsx(
                             "font-bold",
@@ -53,6 +55,8 @@ export const PlaylistDisplayer = ({playlist}: PlaylistDisplayerProps) => {
                         <h2 className={clsx(
                             "font-bold",
                             "truncate",
+                            "text-center",
+                            "w-11/12",
                             "text-sm",
                             "md:text-xl",
                         )}>{playlist.description}</h2>
