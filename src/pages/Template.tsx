@@ -80,7 +80,7 @@ export const Template = ({children, title}: TemplateProps) => {
                             "font-bold",
                             "text-lg",
 
-                        )}>Statify - Bernard Matteo</p><p>Hosted on Netlify</p>
+                        )}>Statify - Bernard Matteo</p><p>Hosted on Github</p>
                     </div>
                     <a href={"https://github.com/MatteoBernard/Statify"} target={"_blank"}>
                         <FaGithub size={30}/>
