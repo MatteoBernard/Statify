@@ -41,17 +41,17 @@ export const TopTracks = () => {
                         "px-3",
                         "py-1",
                         term === 'short_term' ? "border-b-2"  : "",
-                    )}>Short term</button>
+                    )}>4 weeks</button>
                     <button onClick={() => setTerm('medium_term')} className={clsx(
                         "px-3",
                         "py-1",
                         term === 'medium_term' ? "border-b-2" : ""
-                    )}>Medium term</button>
+                    )}>6 months</button>
                     <button onClick={() => setTerm('long_term')} className={clsx(
                         "px-3",
                         "py-1",
                         term === 'long_term' ? "border-b-2" : ""
-                    )}>Long term</button>
+                    )}>All time</button>
                 </div>
 
                 <div>
