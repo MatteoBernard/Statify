@@ -1,6 +1,6 @@
 const CLIENT_ID: string = "c1896354b0c54f8fa0bb2858a6239e30";
 const AUTH_ENDPOINT: string = "https://accounts.spotify.com/authorize";
-const REDIRECT_URL: string = "http://localhost:3000";
+const REDIRECT_URL: string = "https://matteobernard.github.io/Statify";
 const SCOPES: string[] = [
     "user-top-read",
     "user-read-private",
