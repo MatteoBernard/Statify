@@ -2,6 +2,8 @@
 
 Web application that allows users to get data about their favorite artists and songs. The application uses the Spotify API to get data about artists and songs. The application also uses the Spotify Web API.
 
+## Statify is not available yet, the Spotify team is reviewing the application.
+
 ## Technologies
 
 - Typescript / React
