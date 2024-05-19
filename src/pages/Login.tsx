@@ -26,10 +26,12 @@ export const Login = () => {
 
     const logout = (): void => {
         localStorage.removeItem('persist:root');
-        if (window.location.href.includes('access_token')) {
-            window.location.href = '/#';
-        }
-        window.location.reload();
+        setTimeout(() => {
+            if (window.location.href.includes('access_token')) {
+                window.location.href = '/#';
+            }
+            window.location.reload();
+        }, 1500);
     }
 
     if (window.location.href.includes('access_token') && token === null) {

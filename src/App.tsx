@@ -18,7 +18,7 @@ function App() {
               <Route path={"/topTracks"} element={<TopTracks />}/>
               <Route path={"/topArtists"} element={<TopArtists />}/>
               <Route path={"/recentlyPlayed"} element={<RecentlyPlayed />}/>
-              <Route path={"/"} element={<Login />}/>              <Route path={"/"} element={<Login />}/>
+              <Route path={"/"} element={<Login />}/>
               <Route path={"/*"} element={<Login />}/>
           </Routes>
       </div>

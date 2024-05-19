@@ -15,8 +15,10 @@ export const Template = ({children, title}: TemplateProps) => {
 
     const logout = () => {
         localStorage.removeItem('persist:root');
-        window.location.href = '/#';
-        window.location.reload();
+        setTimeout(() => {
+            window.location.href = '/#';
+            window.location.reload();
+        }, 1500);
     }
 
     return (
