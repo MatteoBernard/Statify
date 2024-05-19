@@ -10,10 +10,6 @@ const persistConfig = {
     storage,
 };
 
-if (window.location.pathname === '/') {
-    localStorage.removeItem('persist:root');
-}
-
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store: Store = configureStore({

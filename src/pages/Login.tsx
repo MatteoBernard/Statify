@@ -12,6 +12,7 @@ import {AUTH_URL} from "../constants/authentification";
 import {setToken} from "../redux/reducers/auth";
 import {clsx} from "clsx";
 import statify from "../assets/statify.png";
+import localStorage from "redux-persist/es/storage";
 
 export const Login = () => {
 
@@ -24,7 +25,11 @@ export const Login = () => {
     }
 
     const logout = (): void => {
-        window.location.href = '/';
+        localStorage.removeItem('persist:root');
+        if (window.location.href.includes('access_token')) {
+            window.location.href = '/#';
+        }
+        window.location.reload();
     }
 
     if (window.location.href.includes('access_token') && token === null) {
