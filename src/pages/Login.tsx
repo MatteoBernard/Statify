@@ -28,7 +28,7 @@ export const Login = () => {
         localStorage.removeItem('persist:root');
         setTimeout(() => {
             if (window.location.href.includes('access_token')) {
-                window.location.href = '/#';
+                window.location.hash = '/';
             }
             window.location.reload();
         }, 1500);
