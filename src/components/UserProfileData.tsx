@@ -31,7 +31,7 @@ export const UserProfileData = () => {
                     "justify-center",
                     "gap-4"
                 )}>
-                    <a href={user.uri}><h3 className={clsx(
+                    <a href={user.external_urls.spotify} target={"_blank"}><h3 className={clsx(
                         "text-white",
                         "font-bold",
                         "text-2xl",

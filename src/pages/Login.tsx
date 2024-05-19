@@ -23,6 +23,10 @@ export const Login = () => {
         window.location.href = AUTH_URL;
     }
 
+    const logout = (): void => {
+        window.location.href = '/';
+    }
+
     if (window.location.href.includes('access_token') && token === null) {
         const newToken = window.location.hash.split('&')[0].split('=')[1];
         dispatch(setToken(newToken));
@@ -90,8 +94,22 @@ export const Login = () => {
             )}
 
             {token != null && user && !user.isLoading && (
-                <div>
-                    <ConfirmLoginButton />
+                <div className={clsx(
+                    "flex",
+                    "flex-col",
+                    "items-center",
+                    "justify-center",
+                    "rounded-2xl",
+                    "p-4",
+                    "m-4",
+                )}>
+                    <ConfirmLoginButton/>
+                    <button onClick={logout} className={clsx(
+                        "text-white",
+                        "font-semibold",
+                        "text-lg",
+                        "mt-2"
+                    )}>Logout</button>
                 </div>
             )}
         </div>
