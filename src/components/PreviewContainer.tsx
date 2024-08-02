@@ -21,8 +21,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                     'min-w-fit',
                     'mb-3'
                 )}>
-                    <img src={item.images[0].url} alt={item.name} className={clsx(
-                        'rounded-full',
+                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
                         'object-contain',
                         'h-28',
                         'w-28',
@@ -48,8 +47,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                     "min-w-fit",
                     'mb-3'
                 )}>
-                    <img src={item.album.images[0].url} alt={item.name} className={clsx(
-                        'rounded-full',
+                    <img src={item.album.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
                         'object-contain',
                         'h-28',
                         'w-28',
@@ -67,7 +65,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
         } else if ('track' in item) {
             // RecentlyPlayedContent
             return (
-                <div key={item.played_at} className={clsx(
+                <div key={item.played_at} onClick={() => window.open(item.track.external_urls.spotify)} className={clsx(
                     'flex',
                     'flex-col',
                     'items-center',
@@ -76,7 +74,6 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                     'mb-3'
                 )}>
                     <img src={item.track.album.images[0].url} alt={item.track.name} className={clsx(
-                        'rounded-full',
                         'object-contain',
                         'h-28',
                         'w-28',
@@ -102,8 +99,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                     "min-w-fit",
                     'mb-3'
                 )}>
-                    <img src={item.images[0].url} alt={item.name} className={clsx(
-                        'rounded-full',
+                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
                         'object-contain',
                         'h-28',
                         'w-28',

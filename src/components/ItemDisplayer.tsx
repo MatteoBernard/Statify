@@ -18,8 +18,7 @@ export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
                     "min-w-fit",
                     "mb-3"
                 )}>
-                    <img src={item.images[0].url} alt={item.name} className={clsx(
-                        "rounded-lg",
+                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
                         "object-contain",
                         "h-28",
                         "w-28",
@@ -48,8 +47,7 @@ export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
                     "min-w-fit",
                     "mb-3"
                 )}>
-                    <img src={item.album.images[0].url} alt={item.name} className={clsx(
-                        "rounded-lg",
+                    <img src={item.album.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
                         "object-contain",
                         "h-28",
                         "w-28",
@@ -78,8 +76,7 @@ export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
                     "min-w-fit",
                     "mb-3"
                 )}>
-                    <img src={item.track.album.images[0].url} alt={item.track.name} className={clsx(
-                        'rounded-lg',
+                    <img src={item.track.album.images[0].url} alt={item.track.name} onClick={() => window.open(item.track.external_urls.spotify)} className={clsx(
                         'object-contain',
                         'h-28',
                         'w-28',

@@ -15,8 +15,7 @@ export const UserProfileData = () => {
                 "justify-center",
                 "m-5"
             )}>
-                <img src={user.images[0].url} alt={user.display_name} className={clsx(
-                    "rounded-lg",
+                <img src={user.images[0].url} alt={user.display_name} onClick={() => window.open(user.external_urls.spotify)} className={clsx(
                     "w-28",
                     "h-28",
                     "mr-10",

@@ -19,7 +19,6 @@ export const PlaylistDisplayer = ({playlist}: PlaylistDisplayerProps) => {
                     "m-auto",
                 )}>
                     <img src={playlist.images[0].url} alt={playlist.name} className={clsx(
-                        "rounded-lg",
                         "object-contain",
                         "h-16",
                         "w-16",

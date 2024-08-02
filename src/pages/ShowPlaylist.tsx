@@ -29,7 +29,6 @@ export const ShowPlaylist = () => {
                     "p-2",
                 )}>
                     <img src={currentPlaylist.images[0].url} className={clsx(
-                        "rounded-lg",
                         "object-contain",
                         "h-28",
                         "w-28",

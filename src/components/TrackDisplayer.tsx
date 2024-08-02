@@ -17,7 +17,7 @@ export const TrackDisplayer = ({track, index}: TrackDisplayerProps) => {
 
     return (
         <SpotifySubcontainer>
-            <div className={clsx(
+            <div onClick={() => window.open(track.external_urls.spotify)} className={clsx(
                 "flex",
                 "flex-col",
                 "md:flex-row",
@@ -26,7 +26,6 @@ export const TrackDisplayer = ({track, index}: TrackDisplayerProps) => {
                 "p-3"
             )}>
                 <img src={track.album.images[0].url} alt={track.name} className={clsx(
-                    "rounded-lg",
                     "object-contain",
                     "h-28",
                     "w-28",
