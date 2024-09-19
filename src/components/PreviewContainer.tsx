@@ -1,6 +1,8 @@
+import {useState} from "react";
 import {Artist, Playlist, RecentlyPlayedContent, Track} from "../types";
 import {clsx} from "clsx";
 import {Link} from "react-router-dom";
+import {HoverOverlay} from "./HoverOverlay";
 
 type PreviewContainerProps = {
     title: string,
@@ -9,112 +11,43 @@ type PreviewContainerProps = {
 }
 
 export const PreviewContainer = ({title, link, items}: PreviewContainerProps) => {
+    const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+
     const renderItem = (item: Artist | Track | RecentlyPlayedContent | Playlist) => {
-        if ('genres' in item) {
-            // Artist
-            return (
-                <div key={item.id} className={clsx(
+        const itemId = 'genres' in item ? item.id : 'album' in item ? item.id : 'track' in item ? item.played_at : item.id;
+
+        return (
+            <div
+                key={itemId}
+                className={clsx(
+                    'relative',
                     'flex',
                     'flex-col',
                     'items-center',
                     'text-center',
                     'min-w-fit',
                     'mb-3'
-                )}>
-                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
-                        'object-contain',
-                        'h-28',
-                        'w-28',
-                        'm-2',
-                        'lg:h-40',
-                        'lg:w-40',
-                        'lg:m-4',
-                    )}/>
-                    <h3 className={clsx(
-                        "truncate",
-                        "w-28",
-                    )}>{item.name}</h3>
-                </div>
-            );
-        } else if ('album' in item) {
-            // Track
-            return (
-                <div key={item.id} className={clsx(
-                    'flex',
-                    'flex-col',
-                    'items-center',
-                    'text-center',
-                    "min-w-fit",
-                    'mb-3'
-                )}>
-                    <img src={item.album.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
-                        'object-contain',
-                        'h-28',
-                        'w-28',
-                        'm-2',
-                        'lg:h-40',
-                        'lg:w-40',
-                        'lg:m-4',
-                    )}/>
-                    <h3 className={clsx(
-                        "truncate",
-                        "w-28",
-                    )}>{item.name}</h3>
-                </div>
-            );
-        } else if ('track' in item) {
-            // RecentlyPlayedContent
-            return (
-                <div key={item.played_at} onClick={() => window.open(item.track.external_urls.spotify)} className={clsx(
-                    'flex',
-                    'flex-col',
-                    'items-center',
-                    'text-center',
-                    "min-w-fit",
-                    'mb-3'
-                )}>
-                    <img src={item.track.album.images[0].url} alt={item.track.name} className={clsx(
-                        'object-contain',
-                        'h-28',
-                        'w-28',
-                        'm-2',
-                        'lg:h-40',
-                        'lg:w-40',
-                        'lg:m-4',
-                    )}/>
-                    <h3 className={clsx(
-                        "truncate",
-                        "w-28",
-                    )}>{item.track.name}</h3>
-                </div>
-            );
-        } else {
-            // Playlist
-            return (
-                <div key={item.id} className={clsx(
-                    'flex',
-                    'flex-col',
-                    'items-center',
-                    'text-center',
-                    "min-w-fit",
-                    'mb-3'
-                )}>
-                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
-                        'object-contain',
-                        'h-28',
-                        'w-28',
-                        'm-2',
-                        'lg:h-40',
-                        'lg:w-40',
-                        'lg:m-4',
-                    )}/>
-                    <h3 className={clsx(
-                        "truncate",
-                        "w-28",
-                    )}>{item.name}</h3>
-                </div>
-            );
-        }
+                )}
+                onMouseEnter={() => setHoveredItemId(itemId)}
+                onMouseLeave={() => setHoveredItemId(null)}
+                onClick={() => window.open('genres' in item ? item.external_urls.spotify : 'album' in item ? item.external_urls.spotify : 'track' in item ? item.track.external_urls.spotify : item.external_urls.spotify)}
+            >
+                <img src={'genres' in item ? item.images[0].url : 'album' in item ? item.album.images[0].url : 'track' in item ? item.track.album.images[0].url : item.images[0].url} alt={"Cover image"} className={clsx(
+                    'object-contain',
+                    'h-28',
+                    'w-28',
+                    'm-2',
+                    'lg:h-40',
+                    'lg:w-40',
+                    'lg:m-4',
+                )}/>
+                <h3 className={clsx(
+                    "truncate",
+                    "w-28",
+                )}>{'genres' in item ? item.name : 'album' in item ? item.name : 'track' in item ? item.track.name : item.name}</h3>
+                <HoverOverlay visible={hoveredItemId === itemId} />
+            </div>
+        );
     }
 
     return (
@@ -147,7 +80,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                 "scrollbar",
                 "scrollbar-thumb-spotifyLightGrey",
             )}>
-                {Array.isArray(items) ? items.slice(0, 15).map((item, index) => renderItem(item)) : null}
+                {Array.isArray(items) ? items.slice(0, 10).map((item, index) => renderItem(item)) : null}
             </div>
         </div>
     )
