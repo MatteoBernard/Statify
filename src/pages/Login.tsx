@@ -50,10 +50,10 @@ export const Login = () => {
 
     useEffect(() => {
         if (playlists.items && !playlists.isFetching && !playlists.error) {
-            playlists.items.forEach((playlist: Playlist) => {
-                const playlistId: string = playlist.id;
-                getUserPlaylistContent(token, playlistId);
-            });
+            //playlists.items.forEach((playlist: Playlist) => {
+            //    const playlistId: string = playlist.id;
+            //    getUserPlaylistContent(token, playlistId);
+            //});
             getUserTopTracks(token);
             getUserTopArtists(token);
             getUserRecentlyPlayed(token);

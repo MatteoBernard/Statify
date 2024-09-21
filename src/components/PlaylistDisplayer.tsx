@@ -2,22 +2,34 @@ import {Link} from "react-router-dom";
 import {Playlist} from "../types";
 import {SpotifySubcontainer} from "./SpotifySubcontainer";
 import {clsx} from "clsx";
+import {useState} from "react";
+import {HoverOverlay} from "./HoverOverlay";
+import {Simulate} from "react-dom/test-utils";
+import play = Simulate.play;
 
 type PlaylistDisplayerProps = {
     playlist: Playlist;
 }
 
 export const PlaylistDisplayer = ({playlist}: PlaylistDisplayerProps) => {
+
+    const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+
     return (
-        <Link to={'/showPlaylist/' + playlist.id}>
+        <div>
             <SpotifySubcontainer>
                 <div className={clsx(
+                    "relative",
                     "flex",
                     "flex-row",
                     "items-center",
                     "w-11/12",
-                    "m-auto",
-                )}>
+                    "m-auto")}
+                     onClick={() => window.open(playlist.external_urls.spotify)}
+                     onMouseEnter={() => setHoveredItemId(playlist.id)}
+                     onMouseLeave={() => setHoveredItemId(null)}
+                >
+                    <HoverOverlay visible={hoveredItemId === playlist.id} />
                     <img src={playlist.images[0].url} alt={playlist.name} className={clsx(
                         "object-contain",
                         "h-16",
@@ -68,6 +80,6 @@ export const PlaylistDisplayer = ({playlist}: PlaylistDisplayerProps) => {
                     </div>
                 </div>
             </SpotifySubcontainer>
-        </Link>
+        </div>
     )
 }

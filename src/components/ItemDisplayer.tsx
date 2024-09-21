@@ -1,37 +1,49 @@
 import {Artist, Playlist, RecentlyPlayedContent, Track} from "../types";
 import {clsx} from "clsx";
+import {useState} from "react";
+import {HoverOverlay} from "./HoverOverlay";
 
 type ItemDisplayerProps = {
     items: Artist[] | Track[] | RecentlyPlayedContent[] | Playlist[];
 }
 
 export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
+
+    const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
+
     const renderItem = (item: Artist | Track | RecentlyPlayedContent | Playlist, index: number) => {
         if ('genres' in item) {
             // Artist
             return (
                 <div key={index} className={clsx(
+                    "relative",
                     "flex",
                     "flex-col",
                     "items-center",
                     "text-center",
                     "min-w-fit",
-                    "mb-3"
+                    "mb-3",
                 )}>
-                    <img src={item.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
-                        "object-contain",
-                        "h-28",
-                        "w-28",
-                        "m-2",
-                        "md:h-36",
-                        "md:w-36",
-                        "md:m-3",
-                        "lg:h-44",
-                        "lg:w-44",
-                        "lg:m-4",
-                    )} />
+
+                    <div className={"relative w-auto"}
+                         onClick={() => window.open(item.external_urls.spotify)}
+                         onMouseEnter={() => setHoveredItemId(index)}
+                         onMouseLeave={() => setHoveredItemId(null)}>
+                        <img src={item.images[0].url} alt={item.name} className={clsx(
+                            "object-contain",
+                            "h-28",
+                            "w-28",
+                            "m-2",
+                            "md:h-36",
+                            "md:w-36",
+                            "md:m-3",
+                            "lg:h-44",
+                            "lg:w-44",
+                            "lg:m-4",
+                        )}/>
+                        <HoverOverlay visible={hoveredItemId === index} />
+                    </div>
                     <h3 className={clsx(
-                        "truncate",
                         "w-28",
                     )}>{index + 1}. {item.name}</h3>
                 </div>
@@ -47,20 +59,27 @@ export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
                     "min-w-fit",
                     "mb-3"
                 )}>
-                    <img src={item.album.images[0].url} alt={item.name} onClick={() => window.open(item.external_urls.spotify)} className={clsx(
-                        "object-contain",
-                        "h-28",
-                        "w-28",
-                        "m-2",
-                        "md:h-36",
-                        "md:w-36",
-                        "md:m-3",
-                        "lg:h-44",
-                        "lg:w-44",
-                        "lg:m-4",
-                    )} />
+                    <div className={"relative w-auto"}
+                         onClick={() => window.open(item.external_urls.spotify)}
+                         onMouseEnter={() => setHoveredItemId(index)}
+                         onMouseLeave={() => setHoveredItemId(null)}>
+                        <img src={item.album.images[0].url} alt={item.name}
+                             onClick={() => window.open(item.external_urls.spotify)} className={clsx(
+                            "object-contain",
+                            "h-28",
+                            "w-28",
+                            "m-2",
+                            "md:h-36",
+                            "md:w-36",
+                            "md:m-3",
+                            "lg:h-44",
+                            "lg:w-44",
+                            "lg:m-4",
+                        )}/>
+                        <HoverOverlay visible={hoveredItemId === index}/>
+                    </div>
+
                     <h3 className={clsx(
-                        "truncate",
                         "w-28",
                     )}>{index + 1}. {item.name}</h3>
                 </div>
@@ -76,17 +95,25 @@ export const ItemDisplayer = ({items}: ItemDisplayerProps) => {
                     "min-w-fit",
                     "mb-3"
                 )}>
-                    <img src={item.track.album.images[0].url} alt={item.track.name} onClick={() => window.open(item.track.external_urls.spotify)} className={clsx(
-                        'object-contain',
-                        'h-28',
-                        'w-28',
-                        'm-2',
-                        'lg:h-40',
-                        'lg:w-40',
-                        'lg:m-4',
-                    )}/>
+                    <div className={"relative w-auto"}
+                         onClick={() => window.open(item.track.external_urls.spotify)}
+                         onMouseEnter={() => setHoveredItemId(index)}
+                         onMouseLeave={() => setHoveredItemId(null)}
+                    >
+                        <img src={item.track.album.images[0].url} alt={item.track.name}
+                             onClick={() => window.open(item.track.external_urls.spotify)} className={clsx(
+                            'object-contain',
+                            'h-28',
+                            'w-28',
+                            'm-2',
+                            'lg:h-40',
+                            'lg:w-40',
+                            'lg:m-4',
+                        )}/>
+                        <HoverOverlay visible={hoveredItemId === index} />
+                    </div>
+
                     <h3 className={clsx(
-                        "truncate",
                         "w-28",
                     )}>{item.track.name}</h3>
                 </div>

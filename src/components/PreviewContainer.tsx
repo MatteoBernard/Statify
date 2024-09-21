@@ -32,7 +32,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                 onMouseLeave={() => setHoveredItemId(null)}
                 onClick={() => window.open('genres' in item ? item.external_urls.spotify : 'album' in item ? item.external_urls.spotify : 'track' in item ? item.track.external_urls.spotify : item.external_urls.spotify)}
             >
-                <img src={'genres' in item ? item.images[0].url : 'album' in item ? item.album.images[0].url : 'track' in item ? item.track.album.images[0].url : item.images[0].url} alt={"Cover image"} className={clsx(
+                <img src={'genres' in item ? item.images[0].url : 'album' in item ? item.album.images[0].url : 'track' in item ? item.track.album.images[0].url : item.images[0].url} alt={itemId} className={clsx(
                     'object-contain',
                     'h-28',
                     'w-28',
@@ -80,7 +80,7 @@ export const PreviewContainer = ({title, link, items}: PreviewContainerProps) =>
                 "scrollbar",
                 "scrollbar-thumb-spotifyLightGrey",
             )}>
-                {Array.isArray(items) ? items.slice(0, 10).map((item, index) => renderItem(item)) : null}
+                {Array.isArray(items) ? items.slice(0, 15).map((item, index) => renderItem(item)) : null}
             </div>
         </div>
     )
